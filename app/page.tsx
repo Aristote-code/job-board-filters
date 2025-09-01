@@ -2,312 +2,128 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Search, Filter, Plus, Upload, Users } from "lucide-react"
+import { Search, ChevronDown, MapPin } from "lucide-react"
 
 export default function JobBoard() {
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header */}
-      <header className="bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-8">
-              <div className="text-2xl font-bold text-blue-600">BAG</div>
-              <nav className="hidden md:flex space-x-8">
-                <a href="#" className="text-gray-500 hover:text-gray-900">
-                  DASHBOARD
-                </a>
-                <a href="#" className="text-gray-500 hover:text-gray-900">
-                  LEARNING
-                </a>
-                <a href="#" className="text-blue-600 border-b-2 border-blue-600 pb-4">
-                  JOB BOARD
-                </a>
-                <a href="#" className="text-gray-500 hover:text-gray-900">
-                  RESUME
-                </a>
-              </nav>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Button variant="outline">LOGIN</Button>
-              <Button>GET STARTED</Button>
-            </div>
+    <div className="min-h-screen bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <h1 className="text-2xl font-semibold mb-6">Job board</h1>
+
+        <div className="grid grid-cols-12 gap-6">
+          <div className="col-span-3 space-y-4">
+            {/* Post a Job Card */}
+            <Card className="border border-gray-200 rounded-2xl">
+              <CardContent className="p-6">
+                <h3 className="font-semibold text-lg mb-2">Post a job for free</h3>
+                <p className="text-gray-600 text-sm mb-4">Reach over 30k talents across Africa</p>
+                <Button className="w-full bg-blue-500 hover:bg-blue-600 rounded-lg">Post a free job</Button>
+              </CardContent>
+            </Card>
+
+            {/* Add Resume Card */}
+            <Card className="border border-gray-200 rounded-2xl">
+              <CardContent className="p-6">
+                <h3 className="font-semibold text-lg mb-2">Add your resume</h3>
+                <p className="text-gray-600 text-sm mb-4">Add your resume for future opportunities</p>
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center bg-gray-50">
+                  <p className="text-gray-500 text-sm">Drop your CV Here</p>
+                </div>
+              </CardContent>
+            </Card>
           </div>
-        </div>
-      </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex gap-8">
-          {/* Left Side - Main Content */}
-          <div className="flex-1">
+          <div className="col-span-6">
             {/* Search Bar */}
-            <div className="relative mb-6">
+            <div className="relative mb-4">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-              <Input placeholder="SEARCH..." className="pl-10 py-3 text-lg" />
-            </div>
-
-            {/* Action Components */}
-            <div className="grid md:grid-cols-2 gap-4 mb-8">
-              {/* Post a Job Component */}
-              <Card className="border-2 border-blue-200 bg-blue-50 hover:bg-blue-100 transition-colors cursor-pointer">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="bg-blue-600 p-3 rounded-lg">
-                      <Plus className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg text-blue-900">Post a Job</h3>
-                      <p className="text-blue-700 text-sm">Find the perfect candidate for your company</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Add Your CV Component */}
-              <Card className="border-2 border-green-200 bg-green-50 hover:bg-green-100 transition-colors cursor-pointer">
-                <CardContent className="p-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="bg-green-600 p-3 rounded-lg">
-                      <Upload className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-lg text-green-900">Add Your CV</h3>
-                      <p className="text-green-700 text-sm">Get considered for future opportunities</p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+              <Input placeholder="Search" className="pl-10 py-3 rounded-2xl border-gray-200" />
             </div>
 
             {/* Job Listings */}
             <div className="space-y-4">
-              {/* Job 1 */}
-              <Card className="hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
-                        BAG
-                      </div>
-                      <div>
-                        <div className="text-sm text-gray-500 mb-1">BAG Technologies</div>
-                        <h3 className="font-semibold text-lg mb-2">Chief Operating Officer (COO)</h3>
-                        <div className="flex items-center space-x-4 text-sm text-gray-600">
-                          <div className="flex items-center space-x-1">
-                            <img src="/rwanda-flag.png" alt="Rwanda" className="w-4 h-4" />
+              {Array.from({ length: 8 }).map((_, index) => (
+                <Card key={index} className="border border-gray-200 rounded-2xl hover:shadow-sm transition-shadow">
+                  <CardContent className="p-5">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center space-x-3">
+                        <div className="w-12 h-12 border-2 border-gray-300 rounded-full"></div>
+                        <div>
+                          <h3 className="font-medium">UX Designer at Seven X</h3>
+                          <div className="flex items-center space-x-2 text-sm text-gray-600 mt-1">
+                            <MapPin className="w-4 h-4" />
                             <span>Rwanda, Kigali</span>
+                            <span>•</span>
+                            <span>Closing in 5 days</span>
                           </div>
-                          <Badge variant="secondary">Full time</Badge>
                         </div>
                       </div>
+                      <Badge className="bg-blue-100 text-blue-800 text-xs">38+ applicants</Badge>
                     </div>
-                    <div className="text-right">
-                      <Badge className="bg-blue-100 text-blue-800 mb-2">New</Badge>
-                      <div className="text-sm text-gray-500">Closing in 13 days</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Job 2 */}
-              <Card className="hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
-                        BAG
-                      </div>
-                      <div>
-                        <div className="text-sm text-gray-500 mb-1">BAG Technologies</div>
-                        <h3 className="font-semibold text-lg mb-2">Admin & Procurement Officer</h3>
-                        <div className="flex items-center space-x-4 text-sm text-gray-600">
-                          <div className="flex items-center space-x-1">
-                            <img src="/chad-flag.png" alt="Chad" className="w-4 h-4" />
-                            <span>Chad, Ouaddai</span>
-                          </div>
-                          <Badge variant="secondary">Full time</Badge>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <Badge className="bg-blue-100 text-blue-800 mb-2">New</Badge>
-                      <div className="text-sm text-gray-500">Closing in 13 days</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Job 3 */}
-              <Card className="hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                        RWACOF
-                      </div>
-                      <div>
-                        <div className="text-sm text-gray-500 mb-1">SUCAFINA (RWACOF)</div>
-                        <h3 className="font-semibold text-lg mb-2">Sustainability Manager</h3>
-                        <div className="flex items-center space-x-4 text-sm text-gray-600">
-                          <div className="flex items-center space-x-1">
-                            <img src="/rwanda-flag.png" alt="Rwanda" className="w-4 h-4" />
-                            <span>Rwanda, Kigali</span>
-                          </div>
-                          <Badge variant="secondary">Full time</Badge>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="flex items-center space-x-1 text-blue-600 text-sm mb-2">
-                        <Users className="w-4 h-4" />
-                        <span>10+ applicants</span>
-                      </div>
-                      <div className="text-sm text-gray-500">Closing in 9 days</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Job 4 */}
-              <Card className="hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-orange-600 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                        SLS
-                      </div>
-                      <div>
-                        <div className="text-sm text-gray-500 mb-1">SLS Energy Ltd</div>
-                        <h3 className="font-semibold text-lg mb-2">Field Tech Operations Manager</h3>
-                        <div className="flex items-center space-x-4 text-sm text-gray-600">
-                          <div className="flex items-center space-x-1">
-                            <img src="/rwanda-flag.png" alt="Rwanda" className="w-4 h-4" />
-                            <span>Rwanda, Kigali</span>
-                          </div>
-                          <Badge variant="secondary">Full time</Badge>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="flex items-center space-x-1 text-blue-600 text-sm mb-2">
-                        <Users className="w-4 h-4" />
-                        <span>41+ applicants</span>
-                      </div>
-                      <div className="text-sm text-gray-500">Closing in 18 days</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              {/* Job 5 */}
-              <Card className="hover:shadow-md transition-shadow">
-                <CardContent className="p-6">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-red-800 rounded-full flex items-center justify-center text-white text-xs font-bold">
-                        A
-                      </div>
-                      <div>
-                        <div className="text-sm text-gray-500 mb-1">Andersen in Rwanda</div>
-                        <h3 className="font-semibold text-lg mb-2">Graduate Trainee – Business Support Services</h3>
-                        <div className="flex items-center space-x-4 text-sm text-gray-600">
-                          <div className="flex items-center space-x-1">
-                            <img src="/rwanda-flag.png" alt="Rwanda" className="w-4 h-4" />
-                            <span>Rwanda, Kigali</span>
-                          </div>
-                          <Badge variant="secondary">Internship</Badge>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="text-right">
-                      <div className="flex items-center space-x-1 text-blue-600 text-sm mb-2">
-                        <Users className="w-4 h-4" />
-                        <span>38+ applicants</span>
-                      </div>
-                      <div className="text-sm text-gray-500">Closing in 5 days</div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
 
-          {/* Right Side - Filters */}
-          <div className="w-80">
-            <Card>
+          <div className="col-span-3">
+            <Card className="border border-gray-200 rounded-2xl">
               <CardContent className="p-6">
-                <div className="flex items-center justify-between mb-6">
-                  <h3 className="font-semibold text-lg">Filters</h3>
-                  <Filter className="w-5 h-5 text-gray-400" />
-                </div>
+                <h3 className="font-semibold text-lg mb-6">Filter</h3>
 
                 <div className="space-y-6">
+                  {/* Industry */}
+                  <div>
+                    <label className="block text-sm font-medium mb-2">Industry</label>
+                    <div className="relative">
+                      <select className="w-full p-3 border border-gray-200 rounded-lg appearance-none bg-white text-gray-500">
+                        <option>Ex: finance</option>
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                    </div>
+                  </div>
+
                   {/* Job Type */}
                   <div>
-                    <h4 className="font-medium mb-3">Job type</h4>
-                    <div className="space-y-2">
-                      <label className="flex items-center space-x-2">
-                        <input type="radio" name="jobType" className="w-4 h-4" />
-                        <span className="text-sm">Full time</span>
-                      </label>
-                      <label className="flex items-center space-x-2">
-                        <input type="radio" name="jobType" className="w-4 h-4" />
-                        <span className="text-sm">Part time</span>
-                      </label>
-                      <label className="flex items-center space-x-2">
-                        <input type="radio" name="jobType" className="w-4 h-4" />
-                        <span className="text-sm">Internship</span>
-                      </label>
+                    <label className="block text-sm font-medium mb-2">Job type</label>
+                    <div className="relative">
+                      <select className="w-full p-3 border border-gray-200 rounded-lg appearance-none bg-white text-gray-500">
+                        <option>Ex: full time</option>
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                     </div>
                   </div>
 
                   {/* Job Location */}
                   <div>
-                    <h4 className="font-medium mb-3">Job Location</h4>
-                    <div className="space-y-2">
-                      <label className="flex items-center space-x-2">
-                        <input type="radio" name="location" className="w-4 h-4" />
-                        <span className="text-sm">On site</span>
-                      </label>
-                      <label className="flex items-center space-x-2">
-                        <input type="radio" name="location" className="w-4 h-4" />
-                        <span className="text-sm">Remote</span>
-                      </label>
-                      <label className="flex items-center space-x-2">
-                        <input type="radio" name="location" className="w-4 h-4" />
-                        <span className="text-sm">Hybrid</span>
-                      </label>
+                    <label className="block text-sm font-medium mb-2">Job Location</label>
+                    <div className="relative mb-3">
+                      <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                      <Input placeholder="Search cities / Countries" className="pl-10 border-gray-200 rounded-lg" />
                     </div>
+                    <label className="flex items-center space-x-2 text-sm">
+                      <input type="checkbox" className="w-4 h-4 rounded border-gray-300" />
+                      <span>Remote only</span>
+                    </label>
                   </div>
 
-                  {/* Experience Level */}
+                  {/* Experience */}
                   <div>
-                    <h4 className="font-medium mb-3">Experience Level</h4>
-                    <div className="space-y-2">
-                      <label className="flex items-center space-x-2">
-                        <input type="radio" name="experience" className="w-4 h-4" />
-                        <span className="text-sm">Less than a year</span>
-                      </label>
-                      <label className="flex items-center space-x-2">
-                        <input type="radio" name="experience" className="w-4 h-4" />
-                        <span className="text-sm">1-3 Years</span>
-                      </label>
-                      <label className="flex items-center space-x-2">
-                        <input type="radio" name="experience" className="w-4 h-4" />
-                        <span className="text-sm">3+ Years</span>
-                      </label>
-                      <label className="flex items-center space-x-2">
-                        <input type="radio" name="experience" className="w-4 h-4" />
-                        <span className="text-sm">5+ years</span>
-                      </label>
+                    <label className="block text-sm font-medium mb-2">Experience</label>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="relative">
+                        <select className="w-full p-3 border border-gray-200 rounded-lg appearance-none bg-white text-gray-500">
+                          <option>Min</option>
+                        </select>
+                        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                      </div>
+                      <div className="relative">
+                        <select className="w-full p-3 border border-gray-200 rounded-lg appearance-none bg-white text-gray-500">
+                          <option>Max</option>
+                        </select>
+                        <ChevronDown className="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                      </div>
                     </div>
-                  </div>
-
-                  <div className="space-y-3 pt-4">
-                    <Button className="w-full">Apply Filters</Button>
-                    <Button variant="outline" className="w-full bg-transparent">
-                      Reset Filters
-                    </Button>
                   </div>
                 </div>
               </CardContent>
