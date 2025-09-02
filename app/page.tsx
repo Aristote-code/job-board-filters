@@ -1,27 +1,27 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
-import { Textarea } from "@/components/ui/textarea"
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Search, ChevronDown, MapPin, Upload } from "lucide-react"
+import { useRouter } from "next/navigation"
 
 export default function JobBoard() {
-  const [showJobForm, setShowJobForm] = useState(false)
-  const [showJobSuccess, setShowJobSuccess] = useState(false)
+  const router = useRouter()
   const [showResumeSuccess, setShowResumeSuccess] = useState(false)
   const [dragActive, setDragActive] = useState(false)
   const [uploadedFile, setUploadedFile] = useState<File | null>(null)
 
-  const handleJobSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setShowJobForm(false)
-    setShowJobSuccess(true)
+  const handlePostJobClick = () => {
+    router.push("/post-job")
+  }
+
+  const handleInputChange = (field: string, value: string) => {
+    // Placeholder for job form input change handling
   }
 
   const handleDrag = (e: React.DragEvent) => {
@@ -69,10 +69,7 @@ export default function JobBoard() {
               <CardContent className="p-5">
                 <h3 className="font-semibold text-lg mb-2">Post a job for free</h3>
                 <p className="text-gray-600 text-sm mb-4">Reach over 30k talents across Africa</p>
-                <Button
-                  onClick={() => setShowJobForm(true)}
-                  className="w-full bg-blue-500 hover:bg-blue-600 rounded-xl"
-                >
+                <Button onClick={handlePostJobClick} className="w-full bg-blue-500 hover:bg-blue-600 rounded-xl">
                   Post a free job
                 </Button>
               </CardContent>
@@ -215,71 +212,6 @@ export default function JobBoard() {
           </div>
         </div>
       </div>
-
-      <Dialog open={showJobForm} onOpenChange={setShowJobForm}>
-        <DialogContent className="max-w-2xl">
-          <DialogHeader>
-            <DialogTitle>Post a Free Job</DialogTitle>
-          </DialogHeader>
-          <form onSubmit={handleJobSubmit} className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium mb-2">Job Title</label>
-              <Input placeholder="e.g. Senior UX Designer" required />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">Company Name</label>
-              <Input placeholder="e.g. Seven X" required />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">Location</label>
-              <Input placeholder="e.g. Rwanda, Kigali" required />
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">Job Type</label>
-              <select className="w-full h-10 px-3 border border-gray-200 rounded-lg" required>
-                <option value="">Select job type</option>
-                <option value="full-time">Full time</option>
-                <option value="part-time">Part time</option>
-                <option value="contract">Contract</option>
-                <option value="internship">Internship</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium mb-2">Job Description</label>
-              <Textarea placeholder="Describe the role, responsibilities, and requirements..." rows={4} required />
-            </div>
-            <div className="flex gap-3 pt-4">
-              <Button type="button" variant="outline" onClick={() => setShowJobForm(false)} className="flex-1">
-                Cancel
-              </Button>
-              <Button type="submit" className="flex-1 bg-blue-500 hover:bg-blue-600">
-                Publish Job
-              </Button>
-            </div>
-          </form>
-        </DialogContent>
-      </Dialog>
-
-      <Dialog open={showJobSuccess} onOpenChange={setShowJobSuccess}>
-        <DialogContent className="max-w-md text-center">
-          <div className="mb-4">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl">🎉</span>
-            </div>
-            <DialogTitle className="text-xl mb-2">Your job is ready to go live!</DialogTitle>
-            <p className="text-gray-600 text-sm">
-              Create your free account to manage applicants, edit your post, or close the job.
-            </p>
-          </div>
-          <div className="space-y-3">
-            <Button className="w-full bg-blue-500 hover:bg-blue-600">Sign up with Google</Button>
-            <Button className="w-full bg-blue-600 hover:bg-blue-700">Sign up with LinkedIn</Button>
-            <Button variant="outline" className="w-full bg-transparent">
-              Create account with email
-            </Button>
-          </div>
-        </DialogContent>
-      </Dialog>
 
       <Dialog open={showResumeSuccess} onOpenChange={setShowResumeSuccess}>
         <DialogContent className="max-w-md text-center">
